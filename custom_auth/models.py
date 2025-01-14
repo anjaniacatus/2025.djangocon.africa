@@ -67,3 +67,24 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         return self.email
+
+
+class Profile(models.Model):
+    """
+    Model to represent extended  User Class to add additional
+    profile information.
+    """
+
+    GENDER_CHOICES = [
+        ('M', 'Male'),
+        ('F', 'Female'),
+        ('O', 'Other'),
+    ]
+
+    user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
+    bio = models.CharField(max_length=200, blank=True)
+    gender = models.CharField(max_length=1, choices=GENDER_CHOICES, null=True, blank=True)
+    date_of_birth = models.DateField(null=True, blank=True)
+
+    def __str__(self):
+        return f"Profile for {self.user.email}"

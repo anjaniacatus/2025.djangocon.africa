@@ -22,6 +22,7 @@ from django.urls import path, include
 urlpatterns = [
     path("", include("website.urls")),
     path("accounts/", include("allauth.urls")),
+    path("accounts/profile/", include("custom_auth.urls")),
     path("proposals/", include("proposals.urls")),
     path("admin/", admin.site.urls),
     path("__reload__/", include("django_browser_reload.urls")),
@@ -31,6 +32,7 @@ urlpatterns = [
 urlpatterns += i18n_patterns(
     path("", include("website.urls")),
     path("accounts/", include("allauth.urls")),
+    path("accounts/profile/", include("custom_auth.urls")),
     path("proposals/", include("proposals.urls")),
     path("admin/", admin.site.urls),
 )

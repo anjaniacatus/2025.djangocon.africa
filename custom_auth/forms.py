@@ -1,11 +1,12 @@
 from django import forms
 from allauth.account.forms import SignupForm
+from django.contrib.auth import get_user_model
 
 
 class CustomSignupForm(SignupForm):
-    first_name = forms.CharField(max_length=30, label='First Name')
-    last_name = forms.CharField(max_length=30, label='Last Name')
-    email = forms.EmailField()
+    class Meta:
+        model = get_user_model()
+        fields = ['first_name', 'last_name', 'email']
 
     def signup(self, request, user):
         user.first_name = self.cleaned_data['first_name']
